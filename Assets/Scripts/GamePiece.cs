@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetStructure
+public class GamePiece
 {
     private float radius;
     private float mass;
@@ -10,7 +10,7 @@ public class PlanetStructure
     private Vector2 position;
 
     // Initialization //
-    public PlanetStructure(float radius, float mass, Vector2 position)
+    public void ObjectsStructure(float radius, float mass, Vector2 position)
     {
         if (radius <= 0)
             this.radius = 1;
@@ -22,7 +22,7 @@ public class PlanetStructure
     }
 
 
-    public PlanetStructure(float radius, float mass, string cookingSystem)
+    public void ObjectsStructure(float radius, float mass, string cookingSystem)
     {
         this.radius = radius;
         this.mass = mass;
