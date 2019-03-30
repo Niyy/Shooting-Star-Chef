@@ -5,7 +5,7 @@ using UnityEngine;
 public class FoodBehaviors : MonoBehaviour
 {
     public float angle;
-    // Speed domain [0.0 - 1.0]
+    // Speed domain [0.0 - 5.0]
     public float speed;
 
 
@@ -13,15 +13,23 @@ public class FoodBehaviors : MonoBehaviour
     private Vector2 velocity;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        velocity = new Vector2(speed * Mathf.Cos(Mathf.Deg2Rad * angle), speed * Mathf.Sin(Mathf.Deg2Rad * angle));
+        Debug.Log("Velocity: " + velocity + "\nSin: " + Mathf.Cos(Mathf.Deg2Rad * angle) + "\nCos: " + Mathf.Sin(Mathf.Deg2Rad * angle));
         rig = this.gameObject.GetComponent<Rigidbody2D>();
-        velocity = new Vector2(speed * Mathf.Rad2Deg * Mathf.Cos(angle), speed * Mathf.Rad2Deg * Mathf.Sin(angle));
         rig.velocity = velocity;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        rig.velocity = velocity;
+    }
+
+
+    public void AddToVelocity(Vector2 addition)
+    {
+        velocity += addition;
     }
 }
