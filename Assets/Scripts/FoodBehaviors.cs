@@ -28,7 +28,7 @@ public class FoodBehaviors : MonoBehaviour
     }
 
 
-    public void AddToVelocity(Vector2 addition)
+    public void AddVelocity(Vector2 addition)
     {
         velocity += addition;
     }
