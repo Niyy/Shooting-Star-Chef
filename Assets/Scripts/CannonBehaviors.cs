@@ -9,7 +9,7 @@ public class CannonBehaviors : MonoBehaviour
     public float raidusFromPoint;
 
 
-    public float SpeedCommand;
+    public float speedCommand;
     public float angleCommand;
 
 
@@ -29,7 +29,7 @@ public class CannonBehaviors : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             var food = Instantiate(foodPref, this.transform.position, Quaternion.identity);
-            food.GetComponent<FoodBehaviors>().SetInitVelocity(SpeedCommand, angleCommand);
+            food.GetComponent<FoodBehaviors>().SetInitVelocity(speedCommand, angleCommand);
 
             Debug.Log("FIRE!");
         }
