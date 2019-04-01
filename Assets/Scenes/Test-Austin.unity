@@ -173,7 +173,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -228,6 +228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodPref: {fileID: 6029196617974944656, guid: a087bf5b6634e3b4eb46a1024ddee183,
     type: 3}
+  pointOfRotation: {x: 0, y: 0}
+  raidusFromPoint: 0
   SpeedCommand: 1
   angleCommand: 0
 --- !u!1 &1582014005
