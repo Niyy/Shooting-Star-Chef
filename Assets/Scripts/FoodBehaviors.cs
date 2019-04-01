@@ -44,6 +44,5 @@ public class FoodBehaviors : MonoBehaviour
     {
         velocity = CreateVelocity(newSpeed, newAngle);
         rig.velocity = velocity;
-        Debug.Log("Velocity: " + velocity);
     }
 }

@@ -22,13 +22,16 @@ public class CannonBehaviors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - this.transform.position.x;
-        float y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - this.transform.position.y;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float x = mousePos.x - this.transform.position.x;
+        float y = mousePos.y - this.transform.position.y;
         float angleCommand = Mathf.Rad2Deg * Mathf.Atan2(y, x);
+        speedCommand = Vector2.Distance(this.transform.position, mousePos);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             var food = Instantiate(foodPref, this.transform.position, Quaternion.identity);
+            food.tag = "Food";
             food.GetComponent<FoodBehaviors>().SetInitVelocity(speedCommand, angleCommand);
 
             Debug.Log("FIRE!");
