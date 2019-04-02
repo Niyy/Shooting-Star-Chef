@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class PlanetBehaviors : MonoBehaviour
 {
+    public float mass;
+
+
+    private float graitationalConst;
     private Rigidbody2D rig;
-    private GameObject food;
+    private GameObject[] food;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        food = GameObject.FindGameObjectWithTag("Food");
+        graitationalConst = 0.25f;
+        food = GameObject.FindGameObjectsWithTag("Food");
         rig = this.GetComponent<Rigidbody2D>();
     }
 
@@ -24,17 +29,28 @@ public class PlanetBehaviors : MonoBehaviour
 
     private void GravityUpdate()
     {
-        // Find F = (mm)/d^2
-        float distance = Mathf.Pow(Vector2.Distance(food.transform.position, this.transform.position), 2);
-        float force = (food.GetComponent<Rigidbody2D>().mass * this.rig.mass) / distance;
+        float distance = 0;
+        float force = 0;
+        food = GameObject.FindGameObjectsWithTag("Food");
 
-        // Find the direction of new force
-        float x = (this.transform.position.x - food.transform.position.x);
-        float y = (this.transform.position.y - food.transform.position.y);
-        float angle = Mathf.Atan2(y, x);
+        if (food.Length > 0)
+        {
+            foreach (GameObject pieceOf in food)
+            {
+                // Find F = (mm)/d^2
+                distance = Mathf.Pow(Vector2.Distance(pieceOf.transform.position, this.transform.position), 2);
+                force = ((pieceOf.GetComponent<Rigidbody2D>().mass * mass) / distance) * graitationalConst;
 
-        Vector2 newVelocity = new Vector2(force * Mathf.Cos(angle), force * Mathf.Sin(angle));
 
-        food.GetComponent<FoodBehaviors>().AddVelocity(newVelocity);
+                // Find the direction of new force
+                float x = (this.transform.position.x - pieceOf.transform.position.x);
+                float y = (this.transform.position.y - pieceOf.transform.position.y);
+                float angle = Mathf.Atan2(y, x);
+
+                Vector2 newVelocity = new Vector2(force * Mathf.Cos(angle), force * Mathf.Sin(angle));
+
+                pieceOf.GetComponent<FoodBehaviors>().AddVelocity(newVelocity);
+            }
+        }
     }
 }

@@ -5,28 +5,31 @@ using UnityEngine;
 public class CannonBehaviors : MonoBehaviour
 {
     public GameObject foodPref;
-    public Vector2 pointOfRotation;
-    public float raidusFromPoint;
+    public GameObject pointOfRotation;
 
 
-    public float speedCommand;
-    public float angleCommand;
+    private float speedCommand;
+    private float angleCommand;
+    private float raidusFromPoint;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        raidusFromPoint = Vector2.Distance(this.transform.position, pointOfRotation.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float x = mousePos.x - this.transform.position.x;
-        float y = mousePos.y - this.transform.position.y;
+        float x = mousePos.x - pointOfRotation.transform.position.x;
+        float y = mousePos.y - pointOfRotation.transform.position.y;
         float angleCommand = Mathf.Rad2Deg * Mathf.Atan2(y, x);
         speedCommand = Vector2.Distance(this.transform.position, mousePos);
+        this.transform.position = new Vector2(raidusFromPoint * Mathf.Cos(Mathf.Deg2Rad * angleCommand) + pointOfRotation.transform.position.x,
+                                                raidusFromPoint * Mathf.Sin(Mathf.Deg2Rad * angleCommand) + pointOfRotation.transform.position.y);
+        this.transform.rotation = Quaternion.Euler(0, 0, angleCommand + 90);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
