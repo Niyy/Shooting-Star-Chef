@@ -46,10 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb058915831023409d2ef7cd3d2f547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Assets/Prefab/FoodPref.prefab
+>>>>>>> eba9a5651beecdda3e46179492d34cd4dbbd7448
   needCookValue: 1
   foodList:
   - {fileID: 21300000, guid: e66e0a7ec088102458dff7a25de19b5d, type: 3}
   - {fileID: 21300000, guid: aa580a557879f9841b5b174c4ca00dba, type: 3}
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 52be3339119d088721d487447972c78a04a8175a:Assets/Prefab/FoodPref.prefab
+>>>>>>> eba9a5651beecdda3e46179492d34cd4dbbd7448
 --- !u!212 &3275162655949669105
 SpriteRenderer:
   m_ObjectHideFlags: 0
