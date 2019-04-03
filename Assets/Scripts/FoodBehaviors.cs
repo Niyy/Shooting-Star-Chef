@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class FoodBehaviors : MonoBehaviour
 {
+    public float needCookValue;
+    public Sprite[] foodList;
+
+
     private float angle;
-    // Speed domain [0.0 - 5.0]
     private float speed;
-
-
+    private float cookValue;
     private Rigidbody2D rig;
     private Vector2 velocity;
+
 
     // Start is called before the first frame update
     public void Awake()
@@ -44,5 +47,21 @@ public class FoodBehaviors : MonoBehaviour
     {
         velocity = CreateVelocity(newSpeed, newAngle);
         rig.velocity = velocity;
+    }
+
+
+    public void CookTimer()
+    {
+        cookValue += Time.deltaTime;
+
+        if (cookValue >= needCookValue)
+        {
+            this.GetComponent<SpriteRenderer>().sprite = foodList[1];
+            Debug.Log("Cooked");
+        }
+        else
+        {
+            Debug.Log("NotCooked" + cookValue);
+        }
     }
 }

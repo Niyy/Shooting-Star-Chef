@@ -4,37 +4,79 @@ using UnityEngine;
 
 public class PlanetBehaviors : MonoBehaviour
 {
+    private const float GRAV_CONST = 0.50f;
+
+
+    public float mass;
+    public float cookingRadius;
+
+
+
     private Rigidbody2D rig;
-    private GameObject food;
+    private GameObject[] food;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        food = GameObject.FindGameObjectWithTag("Food");
+        food = GameObject.FindGameObjectsWithTag("Food");
         rig = this.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        GravityUpdate();
+        food = GameObject.FindGameObjectsWithTag("Food");
+        AffectFood();
     }
 
 
-    private void GravityUpdate()
+    private void AffectFood()
     {
+        foreach (GameObject pieceOf in food)
+        {
+            GravityUpdate(pieceOf);
+            CookFood(pieceOf);
+        }
+    }
+
+
+    private void GravityUpdate(GameObject pieceOf)
+    {
+        float force = 0;
+        food = GameObject.FindGameObjectsWithTag("Food");
+
+
         // Find F = (mm)/d^2
-        float distance = Mathf.Pow(Vector2.Distance(food.transform.position, this.transform.position), 2);
-        float force = (food.GetComponent<Rigidbody2D>().mass * this.rig.mass) / distance;
+        force = ((pieceOf.GetComponent<Rigidbody2D>().mass * mass) / CalculateDistance(pieceOf)) * GRAV_CONST;
 
+        Vector2 newVelocity = new Vector2(force * Mathf.Cos(CalculateAngle(pieceOf)), force * Mathf.Sin(CalculateAngle(pieceOf)));
+
+        pieceOf.GetComponent<FoodBehaviors>().AddVelocity(newVelocity);
+    }
+
+
+    private void CookFood(GameObject pieceOf)
+    {
+        if (cookingRadius >= CalculateDistance(pieceOf))
+        {
+            pieceOf.GetComponent<FoodBehaviors>().CookTimer();
+        }
+    }
+
+
+    private float CalculateDistance(GameObject pieceOf)
+    {
+        return Mathf.Pow(Vector2.Distance(pieceOf.transform.position, this.transform.position), 2);
+    }
+
+
+    private float CalculateAngle(GameObject pieceOf)
+    {
         // Find the direction of new force
-        float x = (this.transform.position.x - food.transform.position.x);
-        float y = (this.transform.position.y - food.transform.position.y);
-        float angle = Mathf.Atan2(y, x);
+        float x = (this.transform.position.x - pieceOf.transform.position.x);
+        float y = (this.transform.position.y - pieceOf.transform.position.y);
 
-        Vector2 newVelocity = new Vector2(force * Mathf.Cos(angle), force * Mathf.Sin(angle));
-
-        food.GetComponent<FoodBehaviors>().AddVelocity(newVelocity);
+        return Mathf.Atan2(y, x);
     }
 }
