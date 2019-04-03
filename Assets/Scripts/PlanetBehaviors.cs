@@ -19,6 +19,7 @@ public class PlanetBehaviors : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        graitationalConst = 0.25f;
         food = GameObject.FindGameObjectsWithTag("Food");
         rig = this.GetComponent<Rigidbody2D>();
     }

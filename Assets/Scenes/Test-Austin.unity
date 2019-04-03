@@ -199,11 +199,14 @@ PrefabInstance:
       propertyPath: graitationalConst
       value: 0.25
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 902447093594446537, guid: cca00c7770938ac4d9caff2a756e7ff2,
         type: 3}
       propertyPath: cookingRadius
       value: 10
       objectReference: {fileID: 0}
+=======
+>>>>>>> 52be3339119d088721d487447972c78a04a8175a
     - target: {fileID: 4450885059253294489, guid: cca00c7770938ac4d9caff2a756e7ff2,
         type: 3}
       propertyPath: m_Sprite
