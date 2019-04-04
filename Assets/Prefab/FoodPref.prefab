@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb058915831023409d2ef7cd3d2f547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDis: 0
   needCookValue: 1
   foodList:
   - {fileID: 21300000, guid: e66e0a7ec088102458dff7a25de19b5d, type: 3}

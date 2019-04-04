@@ -5,7 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Food
+  - Food
   - Worm
+  - Worm
+  - Scene Manager
   layers:
   - Default
   - TransparentFX

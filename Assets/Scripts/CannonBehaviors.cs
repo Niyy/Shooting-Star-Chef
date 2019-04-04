@@ -11,6 +11,7 @@ public class CannonBehaviors : MonoBehaviour
     private float speedCommand;
     private float angleCommand;
     private float raidusFromPoint;
+    private GameObject foodNow;
 
 
     // Start is called before the first frame update
@@ -31,11 +32,11 @@ public class CannonBehaviors : MonoBehaviour
                                                 raidusFromPoint * Mathf.Sin(Mathf.Deg2Rad * angleCommand) + pointOfRotation.transform.position.y);
         this.transform.rotation = Quaternion.Euler(0, 0, angleCommand + 90);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !foodNow)
         {
-            var food = Instantiate(foodPref, this.transform.position, Quaternion.identity);
-            food.tag = "Food";
-            food.GetComponent<FoodBehaviors>().SetInitVelocity(speedCommand, angleCommand);
+            foodNow = Instantiate(foodPref, this.transform.position, Quaternion.identity);
+            foodNow.tag = "Food";
+            foodNow.GetComponent<FoodBehaviors>().SetInitVelocity(speedCommand, angleCommand);
 
             Debug.Log("FIRE!");
         }

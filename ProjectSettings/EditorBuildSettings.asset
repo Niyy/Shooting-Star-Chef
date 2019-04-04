@@ -5,30 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: 31fbc8d1e2d665b48bda81091e624e42
   - enabled: 1
-    path: Assets/Scenes/Test-Austin.unity
-    guid: 444f1b3762fd09f45aabd22849ad4591
-  - enabled: 1
-    path: Assets/Scenes/Win.unity
-    guid: 715cd1fbedadabc42981835cf9d48c3a
-  - enabled: 1
-    path: Assets/Scenes/Lose.unity
-    guid: a4410a96788569c4dad379feb807d34e
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/Start.unity
-    guid: 31fbc8d1e2d665b48bda81091e624e42
-  - enabled: 1
-    path: Assets/Scenes/Test-Austin.unity
-    guid: 444f1b3762fd09f45aabd22849ad4591
+    path: Assets/Scenes/level_1.unity
+    guid: 8ce0b59b37ecb9941bcb882f1d961db0
   - enabled: 1
     path: Assets/Scenes/Win.unity
     guid: 715cd1fbedadabc42981835cf9d48c3a

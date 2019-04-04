@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class FoodBehaviors : MonoBehaviour
 {
+    public float maxDis;
     public float needCookValue;
     public Sprite[] foodList;
 
 
     private float angle;
+    // Speed domain [0.0 - 5.0]
     private float speed;
+    private bool amICooked;
     private float cookValue;
     private Rigidbody2D rig;
     private Vector2 velocity;
 
-
     // Start is called before the first frame update
     public void Awake()
     {
+        amICooked = false;
+
+        if(maxDis <= 0)
+        {
+            maxDis = 50;
+        }
+
+        cookValue = 0;
         velocity = Vector2.zero;
         rig = this.gameObject.GetComponent<Rigidbody2D>();
     }
@@ -26,6 +36,13 @@ public class FoodBehaviors : MonoBehaviour
     public void Update()
     {
         rig.velocity = velocity;
+
+
+        if(Vector2.Distance(Vector2.zero, this.transform.position) >= maxDis)
+        {
+            Destroy(this.gameObject);
+            Debug.Log("Boom! " + "I died.");
+        }
     }
 
 
@@ -54,14 +71,21 @@ public class FoodBehaviors : MonoBehaviour
     {
         cookValue += Time.deltaTime;
 
-        if (cookValue >= needCookValue)
+        if(cookValue >= needCookValue)
         {
             this.GetComponent<SpriteRenderer>().sprite = foodList[1];
+            amICooked = true;
             Debug.Log("Cooked");
         }
         else
         {
-            Debug.Log("NotCooked" + cookValue);
+            Debug.Log("Not Cooked");
         }
+    }
+
+
+    public bool IsThisFoodCooked()
+    {
+        return amICooked;
     }
 }

@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class WormBehavior : MonoBehaviour
 {
-    public GameObject SceneMaster;
+    private GameObject sceneMaster;
 
 
-    public void OnCollisionEnter2D(Collision2D col)
+    public void Start()
     {
-        if (col.gameObject.tag.Equals("Food"))
+        sceneMaster = GameObject.FindGameObjectWithTag("Scene Manager");
+    }
+
+
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag.Equals("Food") && col.GetComponent<FoodBehaviors>().IsThisFoodCooked())
         {
-            SceneMaster.GetComponent<SceneMaster>().ChangeScene(2);
+            sceneMaster.GetComponent<SceneMaster>().ChangeScene(2);
+        }
+        else
+        {
+            Destroy(col.gameObject);
         }
     }
 }
