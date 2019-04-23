@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class WormBehavior : MonoBehaviour
 {
+    public int nextScene;
+
+
     private GameObject sceneMaster;
 
 
     public void Start()
     {
-        sceneMaster = GameObject.FindGameObjectWithTag("Scene Manager");
+        sceneMaster = GameObject.FindGameObjectWithTag("Scene Master");
     }
 
 
@@ -17,7 +20,7 @@ public class WormBehavior : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("Food") && col.GetComponent<FoodBehaviors>().IsThisFoodCooked())
         {
-            sceneMaster.GetComponent<SceneMaster>().ChangeScene(2);
+            sceneMaster.GetComponent<SceneMaster>().ChangeScene(nextScene);
         }
         else
         {

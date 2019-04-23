@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneMaster : MonoBehaviour
 {
-    public bool endLevelOutOfBounds;
-
-
     private GameObject food;
 
 
@@ -20,10 +17,16 @@ public class SceneMaster : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag.Equals("Food") && endLevelOutOfBounds)
+        if (col.tag.Equals("Food"))
         {
             Debug.Log("Food as left our solar system.");
-            this.ChangeScene(3);
+            Destroy(col.gameObject);
         }
+    }
+
+
+    public int GetCurrentScene()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
     }
 }
