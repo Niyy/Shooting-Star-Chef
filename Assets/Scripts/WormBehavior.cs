@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// author - Austin Meyer 
+// email - meyerforge@gmail.com
+// file name - WormBehavior.cs
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

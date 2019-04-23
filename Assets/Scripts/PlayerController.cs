@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// author - Austin Meyer 
+// email - meyerforge@gmail.com
+// file name - PlayerController.cs
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
@@ -54,11 +57,6 @@ public class PlayerController : MonoBehaviour
         }
 
         canvas.GetComponent<CanvasMaster>().SetFoodAmount(foodTotal);
-
-        /*Vector3 mousePos = cannonBehaviors.GetMousePos();
-        Vector3 mouseOffsetPos = (new Vector3((0.15f * cannonBehaviors.CalculateAngle()) + mousePos.x,
-                                    (0.15f * cannonBehaviors.CalculateAngle()) + mousePos.y, 0));
-                                    */
         canvas.GetComponent<CanvasMaster>().SetSpeedLocation(cannonBehaviors.SpeedCommand(), cannonBehaviors.GetMousePos());
     }
 
